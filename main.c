@@ -5,9 +5,11 @@
  */
 
 #include <stdio.h>
+#include <locale.h>
 
 int main()
 {
+    setlocale(LC_ALL, "Russian");
     printf("Выберите действие:\n1. Число членов разложение N > 10\n2. Точность вычислений eps > 0.\n");
     int choice;
     scanf("%d", &choice);
@@ -41,9 +43,9 @@ int main()
         printf("Введите точность вычислений eps > 0: ");
         double eps = 0;
         scanf("%lf", &eps);
-        while (eps <= 0) {
+        while (eps <= 0)
             printf("Точность вычислений должна быть больше 0.\n");
-        }
+
         printf("Введите x: ");
         scanf("%lf", &x);
         int i = 1;
@@ -51,12 +53,15 @@ int main()
             fact *= i;
             e *= x;
             sum += e / fact;
-            if (e / fact < eps) {
+            if (e / fact < eps)
                 break;
-            }
+
             i++;
             printf("x = %lf\tn = %d\tsum = %lf\te = %lf\n", x, i, sum, e);
         }
+        // print exp
+        printf("exp(%lf) = %lf\n", x, sum);
+
         break;
     }
     return 0;
